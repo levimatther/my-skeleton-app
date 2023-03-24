@@ -1,2 +1,5 @@
-<h1>My Threads</h1>
-				
+<script>
+    import Post from '$lib/post/Post.svelte';
+</script>
+
+<Post/>

@@ -3,7 +3,7 @@
 	import SignIn from '$lib/auth/SignIn.svelte';
 </script>
 
-<h1>Players</h1>
+
  
 <main class="m-2">
 
