@@ -1,8 +1,7 @@
 <script lang="ts">
-  import type { PageData } from './$types';
   import CharacterDetails from '$lib/character/CharacterDetails.svelte';
 
-  export let data: PageData;
+  export let data
 
   console.log("data", data);
 </script>

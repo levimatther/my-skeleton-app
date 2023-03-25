@@ -1,2 +1,5 @@
-import type { PageServerLoadEvent } from './$types';
-
+export async function load() {
+    return {
+        example: 'Hello World' 
+    };
+}

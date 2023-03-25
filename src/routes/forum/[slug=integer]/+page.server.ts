@@ -1,9 +1,5 @@
-import type { PageServerLoadEvent } from './$types';
-
-export async function load(event: PageServerLoadEvent) {
+export async function load(event) {
     return {
-        props: {
-            slug: event.params.slug
-        }
-    }
+        slug: event.params.slug
+    };
 }
