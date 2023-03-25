@@ -1,6 +1,7 @@
-<script>
-	let character = {
-		id: 1,
+<script lang="ts">
+	import type { Character } from '$lib/types'; 
+	let character: Character = {
+		id: 2,
 		firstName: "Jimmi",
 		lastName: "Neutron",
 		age: 1234,
@@ -15,7 +16,7 @@
 	style="background-image: url('{character?.avatar}'); background-size: cover;"
 >
 	<div class="w-full h-full hover:bg-black/70 rounded-md">
-		<a href="/character/${character?.id}" class="card">
+		<a href="/character/{character?.id}" class="card">
 			<div
 				class="flex flex-col variant-ghost rounded-md w-full h-full opacity-0 hover:opacity-100 justify-center items-center"
 			>
