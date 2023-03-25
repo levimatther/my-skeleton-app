@@ -27,8 +27,8 @@
           </svg>
           Locked Thread
         </p>
-        <div class="font-bold text-xl mb-2">Can coffee make you a better developer?</div>
-        <p class="text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
+        <div class="font-bold text-xl mb-2">Into the unknown!</div>
+        <p class="text-base">A story about a closeted lesbian with ice powers who needs to discover and accept herself and make friends along the way.</p>
       </div>
       <div class="flex items-center h-12">
         <Avatar src="https://i.pravatar.cc/160?img=48" width="w-8 -ml-2" /> 
