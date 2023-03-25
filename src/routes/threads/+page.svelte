@@ -1,5 +1,7 @@
 <script>
-    import Post from '$lib/post/Post.svelte';
+    import ThreadTileList from '$lib/thread/ThreadTileList.svelte';
 </script>
 
-<Post/>
+
+<ThreadTileList />
+

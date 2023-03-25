@@ -6,7 +6,7 @@
 	// Most of your app wide CSS should be put in this file
 	import '../app.postcss';
 	import { page } from '$app/stores';
-	import { AppShell, AppBar, AppRail, AppRailTile } from '@skeletonlabs/skeleton';
+	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
 	import Navigation from '$lib/navigation/Navigation.svelte';
 	import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
 	import { LightSwitch } from '@skeletonlabs/skeleton';
@@ -15,7 +15,7 @@
 	drawerStore.open({})
 }
 
-$: classesSidebar = $page.url.pathname === '/' ? 'w-0' : 'w-0 lg:w-64';
+$: classesSidebar = $page.url.pathname === '/' ? 'w-0 lg:w-64' : 'w-0 lg:w-64';
 
 </script>
 

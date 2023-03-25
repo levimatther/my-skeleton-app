@@ -1,2 +1,5 @@
-<h1>My Characters</h1>
-				
+<script>
+  import CharacterTileList from '$lib/character/CharacterTileList.svelte';
+</script>
+
+<CharacterTileList/>

@@ -1,5 +1,5 @@
-<h1>Forums</h1>
+<script>
+    import ForumTileList from '$lib/forum/ForumTileList.svelte';
+</script>
 
-<div class="variant-filled-tertiary">tertiary</div>
-<div class="variant-filled-success">success</div>
-<div class="variant-filled-primary">primary</div>
+<ForumTileList/>
