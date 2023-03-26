@@ -3,6 +3,10 @@
 	import Bookmarks from '$lib/dashboard/Bookmarks.svelte';
 	import Onboarding from '$lib/dashboard/Onboarding.svelte';
 	import ParticipatingForums from '$lib/dashboard/ParticipatingForums.svelte';
+
+	export let data;
+	console.log('data', data);
+	
 </script>
 
 <Onboarding/>
