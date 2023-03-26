@@ -13,6 +13,7 @@
 
 	function drawerOpen(): void {
 	drawerStore.open({})
+
 }
 
 $: classesSidebar = $page.url.pathname === '/' ? 'w-0 lg:w-64' : 'w-0 lg:w-64';

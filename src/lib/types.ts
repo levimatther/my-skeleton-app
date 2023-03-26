@@ -63,3 +63,9 @@ export interface Thread {
 	title: string;
 	updatedAt?: string;
 }
+
+export interface User {
+	id: number;
+	email: string;
+	role: string;
+}

@@ -42,3 +42,5 @@ export type Species =
 	| 'Vampire'
 	| 'Werewolf'
 	| 'Other';
+
+export const ApiVersion = 'v1';

@@ -1,9 +1,12 @@
-export async function load(event) {
-	// fetch from api/
+import { ApiVersion } from '$lib/enums';
 
+export async function load(event, locals) {
+
+	let user = locals.user;
+	// fetch from api/
     let a = 1;
     let b = 2;
-	const randomNumberResponse = await event.fetch('/api/random-number', {
+	const randomNumberResponse = await event.fetch(`/api/${ApiVersion}/random-number`, {
 		method: 'POST',
 		body: JSON.stringify({ a, b }),
 		headers: {
@@ -11,16 +14,8 @@ export async function load(event) {
 		}
 	});
 
-	const authResponse = await event.fetch('/api/auth', {
-		method: 'GET',
-		headers: {
-			'content-type': 'application/json'
-		}
-	});
-
 	return {
-		example: 'Hello World',
 		randomNumber: await randomNumberResponse.json(),
-		auth: await authResponse.json()
+		user: user
 	};
 }
