@@ -38,9 +38,5 @@
 		"vite": "^4.2.0",
 		"vitest": "^0.25.3"
 	},
-	"type": "module",
-	"dependencies": {
-		"@supabase/supabase-js": "^2.12.1",
-		"supabase": "^1.45.2"
-	}
+	"type": "module"
 }

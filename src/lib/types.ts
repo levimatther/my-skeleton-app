@@ -47,7 +47,7 @@ export interface Post {
 	body: string;
 	createdAt: string;
 	character: Character;
-	likes?: number;
+	likes: number;
 	owner: Player;
 	thread: Thread;
 	updatedAt?: string;
@@ -58,7 +58,6 @@ export interface Thread {
 	createdAt: string;
 	description?: string;
 	forum: Forum;
-  likes?: number; // todo: total of all post likes.
 	owner: Player;
 	title: string;
 	updatedAt?: string;
