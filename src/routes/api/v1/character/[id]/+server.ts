@@ -1,10 +1,26 @@
 import { error } from '@sveltejs/kit';
-import type { RequestHandler } from './$types';
 import type { Character } from '$lib/types';
 
-export const GET = (({ url }) => {
-	console.log('url', url);
-	const body = `The URL is: ${url}`;
 
+export const GET = async ({ params }) => {
+	const body = `The Character ID is: ${params.id}`;
 	return new Response(JSON.stringify({ body }));
-}) satisfies RequestHandler;
+};
+
+GET.satisfies = 'RequestHandler';
+
+export const PUT = async ({ params }) => {
+	const body = `The Character ID is: ${params.id}`;
+	return new Response(JSON.stringify({ body }));
+};
+
+PUT.satisfies = 'RequestHandler';
+
+export const DELETE = async ({ params }) => {
+	const body = `The Character ID is: ${params.id}`;
+	return new Response(JSON.stringify({ body }));
+};
+
+DELETE.satisfies = 'RequestHandler';
+
+

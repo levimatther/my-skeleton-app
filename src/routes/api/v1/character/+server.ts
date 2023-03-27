@@ -8,3 +8,14 @@ export const POST = (({ url }) => {
 
 	return new Response(JSON.stringify({ body }));
 }) satisfies RequestHandler;
+
+
+// Example POST method implementation:
+// const res = await event.fetch(`/api/${ApiVersion}/character`, {
+// 	method: 'POST',
+// 	body: JSON.stringify({ slug: event.params.slug }),
+// 	headers: {
+// 		'Content-Type': 'application/json'
+// 	}
+// });
+
