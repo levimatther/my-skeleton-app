@@ -7,7 +7,7 @@
 	import '../app.postcss';
 	import { page } from '$app/stores';
 	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
-	import Navigation from '$lib/navigation/Navigation.svelte';
+	import Navigation from '$lib/components/navigation/Navigation.svelte';
 	import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
 	import { LightSwitch } from '@skeletonlabs/skeleton';
 

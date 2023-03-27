@@ -1,7 +1,9 @@
-<script>
-    import ForumTileList from '$lib/forum/ForumTileList.svelte';
+<script lang="ts">
+    import ForumTileList from '$lib/components/forum/ForumTileList.svelte';
+    import type { Forum } from '$lib/types';
     export let data;
-    console.log("data", data)
+    
+    const forums = data.props.forums as Forum[];
 </script>
 
-<ForumTileList/>
+<ForumTileList forums={forums}/>

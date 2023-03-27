@@ -92,7 +92,7 @@ export const getForums = async () => {
 	try {
 		const { data, error } = await supabase.from('forums').select('*');
 		if (error) throw error;
-		return { data };
+		return {data};
 	} catch (error) {
 		handleError(error);
 	}

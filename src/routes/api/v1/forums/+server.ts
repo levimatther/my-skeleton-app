@@ -1,7 +1,9 @@
 import { forums } from '$lib/stores/forums';
 
-export const POST = async () => {
+export const GET = async () => {
 	const body = await forums.fetchForums();
+	console.log('body', body);
+	console.log(body.length)
 
 	if (!body) {
 		return {
@@ -11,6 +13,6 @@ export const POST = async () => {
 			}
 		};
 	}
-	return new Response(JSON.stringify({ body }));
+	return new Response(JSON.stringify(body));
 };
-POST.satisfies = 'RequestHandler';
+GET.satisfies = 'RequestHandler';

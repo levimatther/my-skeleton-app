@@ -1,5 +1,5 @@
 <script lang="ts">
-	import SignIn from '$lib/auth/SignIn.svelte';
+	import SignIn from '$lib/components/auth/SignIn.svelte';
 	export let data;
 	console.log(data);
 </script>

@@ -1,6 +1,6 @@
 <script>
-  import CharacterTileList from '$lib/character/CharacterTileList.svelte';
-  import CharacterCRUDTile from '$lib/character/CharacterCRUDTile.svelte';
+  import CharacterTileList from '$lib/components/character/CharacterTileList.svelte';
+  import CharacterCRUDTile from '$lib/components/character/CharacterCRUDTile.svelte';
 
   export let data;
   console.log(data);

@@ -30,6 +30,8 @@ export interface Forum {
 	updatedAt?: string;
 }
 
+export interface Forums extends Array<Forum> {}
+
 export interface Player {
 	id: number;
 	alias: string;

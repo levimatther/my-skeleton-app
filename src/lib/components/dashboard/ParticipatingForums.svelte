@@ -1,5 +1,5 @@
 <script>
-    import ForumTileList from "$lib/forum/ForumTileList.svelte";
+    import ForumTileList from "$lib/components/forum/ForumTileList.svelte";
 </script>
 
 <div class="m-2">

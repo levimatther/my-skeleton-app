@@ -1,5 +1,5 @@
 <script>
-    import Post from '$lib/post/PostTile.svelte';
+    import Post from '$lib/components/post/PostTile.svelte';
 
     const testList = [0,1,2,3,4,5]
 </script>

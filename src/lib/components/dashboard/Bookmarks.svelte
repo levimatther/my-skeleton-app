@@ -1,5 +1,5 @@
 <script>
-    import ThreadTileList from '$lib/thread/ThreadTileList.svelte';
+    import ThreadTileList from '$lib/components/thread/ThreadTileList.svelte';
 </script>
 
 <div class="m-2">

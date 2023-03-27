@@ -1,5 +1,5 @@
 <script lang="ts">
-  import CharacterDetails from '$lib/character/CharacterDetails.svelte';
+  import CharacterDetails from '$lib/components/character/CharacterDetails.svelte';
 
   export let data
   console.log("data", data);

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import PostTileList from '$lib/post/PostTileList.svelte';
+    import PostTileList from '$lib/components/post/PostTileList.svelte';
     
     export let data;
     console.log(data);
