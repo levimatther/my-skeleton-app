@@ -19,12 +19,15 @@ export interface Character {
 
 export interface Forum {
 	id: number;
-	title: string;
-	description?: string;
 	createdAt: string;
-	updatedAt?: string;
+	description?: string;
+	heroImage?: string;
 	isParent?: boolean;
+	ownerId?: number;
+	owner?: Player;
 	parent?: Forum;
+	title: string;
+	updatedAt?: string;
 }
 
 export interface Player {

@@ -1,10 +1,16 @@
-import { error } from '@sveltejs/kit';
-import type { RequestHandler } from './$types';
-import type { Forum } from '$lib/types';
+import { forums } from '$lib/stores/forums';
 
-export const POST = (({ url }) => {
-	console.log('url', url);
-	const body = `The URL is: ${url}`;
+export const POST = async () => {
+	const body = await forums.fetchForums();
 
+	if (!body) {
+		return {
+			status: 404,
+			body: {
+				message: 'Not found'
+			}
+		};
+	}
 	return new Response(JSON.stringify({ body }));
-}) satisfies RequestHandler;
+};
+POST.satisfies = 'RequestHandler';
