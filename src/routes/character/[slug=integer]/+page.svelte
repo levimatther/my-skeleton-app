@@ -2,7 +2,6 @@
   import CharacterDetails from '$lib/character/CharacterDetails.svelte';
 
   export let data
-
   console.log("data", data);
 </script>
 
