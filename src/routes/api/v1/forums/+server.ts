@@ -1,9 +1,8 @@
-import { forums } from '$lib/stores/forums';
+import { getForums } from '$lib/server/supabase';
 
 export const GET = async () => {
-	const body = await forums.fetchForums();
-	console.log('body', body);
-	console.log(body.length)
+	const res = await getForums();
+	const body = res?.data;
 
 	if (!body) {
 		return {

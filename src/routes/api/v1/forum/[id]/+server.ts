@@ -1,24 +1,38 @@
-import { error } from '@sveltejs/kit';
-import type { Forum } from '$lib/types';
+import { getForum, updateForum, deleteForum } from '$lib/server/supabase';
 
 export const GET = async ({ params }) => {
-	const body = `The Forum ID is: ${params.id}`;
-	return new Response(JSON.stringify({ body }));
+
+	const res = await getForum(params.id);
+	const forum = res?.data;
+	if (forum === undefined) {
+		return new Response(JSON.stringify({ title: 'Forum not found', description: 'The forum you are looking for does not exist.' }));
+	} else {
+		return new Response(JSON.stringify(forum));
+	}
 };
 
 GET.satisfies = 'RequestHandler';
 
 export const PUT = async ({ params }) => {
-	const body = `The Forum ID is: ${params.id}`;
-	return new Response(JSON.stringify({ body }));
+	const res = await updateForum(params.id);
+	const forum = res?.data;
+	if (forum === undefined) {
+		return new Response(JSON.stringify({ title: 'Forum not found', description: 'The forum you are looking for does not exist.' }));
+	} else {
+		return new Response(JSON.stringify(forum));
+	}
 };
 
 PUT.satisfies = 'RequestHandler';
 
 export const DELETE = async ({ params }) => {
-	const body = `The Forum ID is: ${params.id}`;
-	return new Response(JSON.stringify({ body }));
+	const res = await deleteForum(params.id);
+	const forum = res?.data;
+	if (forum === undefined) {
+		return new Response(JSON.stringify({ title: 'Forum not found', description: 'The forum you are looking for does not exist.' }));
+	} else {
+		return new Response(JSON.stringify({}));
+	}
 };
 
 DELETE.satisfies = 'RequestHandler';
-

@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import type { Forum } from '$lib/types';
+
 
 export const POST = (({ url }) => {
 	console.log('url', url);

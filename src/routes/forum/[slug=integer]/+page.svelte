@@ -1,8 +1,7 @@
 <script lang="ts">
-
+  import ForumDetailsCard from "$lib/components/forum/ForumDetailsCard.svelte";
   export let data;
-  console.log(data);
+  let forum = data?.forum;
 </script>
 
-<h1>{data?.title}</h1>
-<div>{@html data?.content}</div>
+<ForumDetailsCard forum={forum} />
