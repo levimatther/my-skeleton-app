@@ -1,27 +1,27 @@
-import { writable } from 'svelte/store';
-import { error } from '@sveltejs/kit';
-import { getForums } from '$lib/server/supabase';
+// import { writable } from 'svelte/store';
+// import { error } from '@sveltejs/kit';
+// import { getForums } from '$lib/server/supabase';
 
-// Verbs: Fetch, Add, Edit, Remove
 
-const createForumsStore = () => {
-	const store = writable({});
-	const { subscribe, set, update } = store;
 
-	const fetchForums = async () => {
-		try {
-			const { data, error } = await getForums();
-			set(data);
-			return data;
-		} catch (err) {
-			return error(500, <Error>err);
-		}
-	};
+// const createForumsStore = () => {
+// 	const store = writable({});
+// 	const { subscribe, set, update } = store;
 
-	return {
-		subscribe,
-		fetchForums
-	};
-};
+// 	const fetchForums = async () => {
+// 		try {
+// 			const { data, error } = await getForums();
+// 			set(data);
+// 			return data;
+// 		} catch (err) {
+// 			return error(500, <Error>err);
+// 		}
+// 	};
 
-export const forums = createForumsStore();
+// 	return {
+// 		subscribe,
+// 		fetchForums
+// 	};
+// };
+
+// export const forums = createForumsStore();
