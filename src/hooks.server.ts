@@ -1,24 +1,14 @@
-import { authenticateUser } from '$lib/server/auth';
-import { redirect, type Handle } from '@sveltejs/kit';
+import { getAuth } from '$lib/server/supabase';
+import type { Handle } from '@sveltejs/kit';
 
 export const handle: Handle = async ({ event, resolve }) => {
-	// Stage 1
-	event.locals.user = authenticateUser(event);
+	const { cookies, locals } = event;
 
-	if (event.url.pathname.startsWith('/protected')) {
-		if (!event.locals.user) {
-			throw redirect(303, '/');
-		}
-		if (event.url.pathname.startsWith('/protected/admin')) {
-			if (event.locals.user.role !== 'ADMIN') {
-				throw redirect(303, '/protected');
-			}
-		}
-	}
+	const { user } = await getAuth() 
 
-	const response = await resolve(event); // Stage 2
+	console.log('user', user);
 
-	// Stage 3
-
-	return response;
+	return resolve(event);
 };
+
+// todo: figure out how to use hooks for global auth check + other things. 

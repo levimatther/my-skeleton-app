@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import type { Character, Player, Post, Thread } from '$lib/types';
+// import type { Character, Player, Post, Thread } from '$lib/types';
 import { handleError } from '$lib/utils';
 
 const supabaseUrl = import.meta.env.VITE_PUBLIC_SUPABASE_URL;

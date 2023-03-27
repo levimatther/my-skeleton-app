@@ -1,17 +1,10 @@
 import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
+import type { Character } from '$lib/types';
 
 export const POST = (({ url }) => {
-	const min = Number(url.searchParams.get('min') ?? '0');
-	const max = Number(url.searchParams.get('max') ?? '1');
+	console.log('url', url);
+	const body = `The URL is: ${url}`;
 
-	const d = max - min;
-
-	if (isNaN(d) || d < 0) {
-		throw error(400, 'min and max must be numbers, and min must be less than max');
-	}
-
-	const random = min + Math.random() * d;
-
-	return new Response(String(random));
+	return new Response(JSON.stringify({ body }));
 }) satisfies RequestHandler;

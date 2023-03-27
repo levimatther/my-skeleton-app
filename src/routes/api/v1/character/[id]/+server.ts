@@ -1,8 +1,8 @@
 import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import type { Forum } from '$lib/types';
+import type { Character } from '$lib/types';
 
-export const POST = (({ url }) => {
+export const GET = (({ url }) => {
 	console.log('url', url);
 	const body = `The URL is: ${url}`;
 
