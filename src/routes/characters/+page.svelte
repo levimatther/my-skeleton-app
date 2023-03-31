@@ -3,7 +3,6 @@
   import CharacterCRUDTile from '$lib/components/character/CharacterCRUDTile.svelte';
 
   export let data;
-  console.log(data);
 </script>
 
 <CharacterTileList/>

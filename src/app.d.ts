@@ -5,10 +5,13 @@
 import type { User } from '$lib/types';
 
 declare namespace App {
-	interface Locals {
-		user: User | null;
-	}
-	// interface PageData {}
+	 interface Locals {
+			supabase: SupabaseClient;
+			getSession(): Promise<Session | null>;
+		}
+	 interface PageData {
+      session: Session | null;
+    }
 	// interface Error {}
 	// interface Platform {}
 }

@@ -1,10 +1,15 @@
-import { error } from '@sveltejs/kit';
-import type { RequestHandler } from './$types';
-import type { Thread } from '$lib/types';
-
-export const POST = (({ url }) => {
-	console.log('url', url);
-	const body = `The URL is: ${url}`;
-
-	return new Response(JSON.stringify({ body }));
-}) satisfies RequestHandler;
+import { createPost } from '$lib/server/supabase';
+export const POST = async (newThread) => {
+	const res = await createPost(newThread);
+	const thread = res?.data;
+	if (thread === undefined) {
+		return new Response(
+			JSON.stringify({
+				title: 'Thread was not created',
+				description: 'The thread was not created. Please try again.'
+			})
+		);
+	} else {
+		return new Response(JSON.stringify(thread));
+	}
+};

@@ -14,6 +14,17 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Auth Actions
 
+export const signIn = async (email) => {
+	try {
+		let { data, error } = await supabase.auth.signInWithOtp({email})
+		if (error) throw error;
+		return { data };
+	} catch (error) {
+		handleError(error);
+	}
+};
+
+
 export const getAuth = async () => {
 	try {
 		return await supabase.auth.getUser();

@@ -1,14 +1,32 @@
-// import { getAuth } from '$lib/server/supabase';
-// import type { Handle } from '@sveltejs/kit';
+// src/hooks.server.ts
+import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
+import type { Handle } from '@sveltejs/kit';
 
-// export const handle: Handle = async ({ event, resolve }) => {
-// 	const { cookies, locals } = event;
+export const handle: Handle = async ({ event, resolve }) => {
+	event.locals.supabase = createSupabaseServerClient({
+		supabaseUrl: import.meta.env.VITE_PUBLIC_SUPABASE_URL,
+		supabaseKey: import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY,
+		event
+	});
 
-// 	const { user } = await getAuth() 
+	/**
+	 * A convenience helper so we can just call await getSession() instead const { data: { session } } = await supabase.auth.getSession()
+	 */
+	event.locals.getSession = async () => {
+		const {
+			data: { session }
+		} = await event.locals.supabase.auth.getSession();
+		return session;
+	};
 
-// 	console.log('user', user);
-
-// 	return resolve(event);
-// };
-
-// todo: figure out how to use hooks for global auth check + other things. 
+	return resolve(event, {
+		/**
+		 * There´s an issue with `filterSerializedResponseHeaders` not working when using `sequence`
+		 *
+		 * https://github.com/sveltejs/kit/issues/8061
+		 */
+		filterSerializedResponseHeaders(name) {
+			return name === 'content-range';
+		}
+	});
+};

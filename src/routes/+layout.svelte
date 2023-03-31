@@ -10,9 +10,33 @@
 	import Navigation from '$lib/components/navigation/Navigation.svelte';
 	import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
 	import { LightSwitch } from '@skeletonlabs/skeleton';
+	
+	// Modal
+	import { Modal, modalStore } from '@skeletonlabs/skeleton';
+	import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
+	import threadCRUD from '$lib/components/thread/ThreadCRUD.svelte';
+
+	export let data;
+
+	console.log("layout data", data)
+
+	const modalComponentRegistry: Record<string, ModalComponent> = {
+
+	// Custom Modal 1
+	threadCRUD: {
+		// Pass a reference to your custom component
+		ref: threadCRUD,
+		// Add the component properties as key/value pairs
+		props: {},
+		// Provide a template literal for the default component slot
+		slot: ``
+	}
+};
 
 	function drawerOpen(): void {
 	drawerStore.open({})
+
+
 
 }
 
@@ -26,6 +50,7 @@ $: classesSidebar = $page.url.pathname === '/' ? 'w-0 lg:w-64' : 'w-0 lg:w-64';
 	<Navigation />
 </Drawer>
 
+<Modal components={modalComponentRegistry} />
 <!-- App Shell -->
 
 <AppShell slotSidebarLeft="bg-surface-500/5 {classesSidebar}">
@@ -49,27 +74,11 @@ $: classesSidebar = $page.url.pathname === '/' ? 'w-0 lg:w-64' : 'w-0 lg:w-64';
 			<svelte:fragment slot="trail">
 				<a
 					class="btn btn-sm variant-ghost-surface"
-					href="https://discord.gg/EXqV7W8MtY"
+					href="https://discord.gg/8YCvmYbA"
 					target="_blank"
 					rel="noreferrer"
 				>
 					Discord
-				</a>
-				<a
-					class="btn btn-sm variant-ghost-surface"
-					href="https://twitter.com/SkeletonUI"
-					target="_blank"
-					rel="noreferrer"
-				>
-					Twitter
-				</a>
-				<a
-					class="btn btn-sm variant-ghost-surface"
-					href="https://github.com/skeletonlabs/skeleton"
-					target="_blank"
-					rel="noreferrer"
-				>
-					GitHub
 				</a>
 				<LightSwitch />
 			</svelte:fragment>

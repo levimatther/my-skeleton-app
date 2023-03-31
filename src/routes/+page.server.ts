@@ -1,6 +1,7 @@
 import { ApiVersion } from '$lib/enums';
 
 export async function load(event) {
+	const locals = event.locals;
 
     let a = 1;
     let b = 2;
@@ -14,5 +15,6 @@ export async function load(event) {
 
 	return {
 		randomNumber: await randomNumberResponse.json(),
+		locals: locals
 	};
 }

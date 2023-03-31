@@ -5,7 +5,6 @@
 	import ParticipatingForums from '$lib/components/dashboard/ParticipatingForums.svelte';
 
 	export let data;
-	console.log('data', data);
 	
 </script>
 

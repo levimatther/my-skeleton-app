@@ -17,6 +17,8 @@ export interface Character {
 	updatedAt?: string;
 }
 
+export interface Characters extends Array<Character> {}
+
 export interface Forum {
 	id: number;
 	createdAt: string;
@@ -47,6 +49,8 @@ export interface Player {
 	updatedAt?: string;
 }
 
+export interface Players extends Array<Player> {}
+
 export interface Post {
 	id: number;
 	body: string;
@@ -58,6 +62,8 @@ export interface Post {
 	updatedAt?: string;
 }
 
+export interface Posts extends Array<Post> {}
+
 export interface Thread {
 	id: number;
 	createdAt: string;
@@ -68,6 +74,8 @@ export interface Thread {
 	title: string;
 	updatedAt?: string;
 }
+
+export interface Threads extends Array<Thread> {}
 
 export interface User {
 	id: number;
