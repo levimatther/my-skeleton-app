@@ -1,29 +1,23 @@
 <script lang="ts">
+  import { ApiVersion } from '$lib/enums';
   async function handleFormSubmit(event: Event) {
+    let result;
     event.preventDefault(); // Prevent the default form submission behavior
 
     // Get the email address entered by the user
     const email = (event.target as HTMLFormElement).email.value;
 
     // Send a POST request to the login endpoint
-    const response = await fetch('/api/v1/auth/login', {
+    const response = await fetch(`/api/${ApiVersion}/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(email)
+      body: JSON.stringify({ email: email })
     });
 
-    // Check the response status and handle errors if necessary
-    if (!response.ok) {
-      const { error } = await response.json();
-	  
-	  alert(JSON.stringify(error));
-	  return;
-    } else {
-      // Redirect the user to the home page
-	  window.location.href = '/';
-    }
+    result = await response.json();
+
   }
 </script>
 

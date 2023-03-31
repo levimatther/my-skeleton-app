@@ -4,7 +4,6 @@
 	import Onboarding from '$lib/components/dashboard/Onboarding.svelte';
 	import ParticipatingForums from '$lib/components/dashboard/ParticipatingForums.svelte';
 
-	export let data;
 	
 </script>
 

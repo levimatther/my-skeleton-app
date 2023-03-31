@@ -16,9 +16,20 @@
 	import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
 	import threadCRUD from '$lib/components/thread/ThreadCRUD.svelte';
 
+	import { onMount } from 'svelte';
+	import { invalidate } from '$app/navigation'
+
 	export let data;
 
-	console.log("layout data", data)
+	$: ({ supabase } = data)
+
+	onMount(() => {
+		const { data } = supabase.auth.onAuthStateChange(() => {
+			invalidate('supabase:auth')
+		})
+
+		return () => data.subscription.unsubscribe()
+	})
 
 	const modalComponentRegistry: Record<string, ModalComponent> = {
 
