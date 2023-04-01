@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { signOut } from '$lib/supabase';
+	import { goto } from '$app/navigation';
 	import { popup, Avatar, ListBox, ListBoxItem, LightSwitch } from '@skeletonlabs/skeleton';
 	import type { PopupSettings } from '@skeletonlabs/skeleton';
 
@@ -18,20 +20,11 @@
 	async function handleLogout() {
 		if (session) {
 			try {
-				const response = await fetch('api/v1/auth/logout', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify({})
-				});
-				if (response.ok) {
-					window.location.href = '/';
-				} else {
-					// Handle logout error
-				}
+				const { error } = await signOut();
+				goto('/');
+				if (error) throw error;
 			} catch (error) {
-				// Handle fetch error
+				console.log(error);
 			}
 		}
 	}
@@ -53,7 +46,7 @@
 		</ListBoxItem>
 		<ListBoxItem bind:group={comboboxValue} name="medium" value="television">
 			{#if session}
-				<a href="/api/v1/auth/logout" on:click|preventDefault={handleLogout}>
+				<a href="/" on:click|preventDefault={handleLogout}>
 					Logout
 				</a>
 			{:else}

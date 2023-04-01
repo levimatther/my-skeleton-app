@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit';
-import { signIn } from '$lib/server/supabase';
+import { signIn } from '$lib/supabase';
 import type { RequestHandler } from '@sveltejs/kit';
 
 export const POST: RequestHandler = async ({ request }) => {

@@ -1,4 +1,4 @@
-import { getThread, updateThread, deleteThread } from '$lib/server/supabase';
+import { getThread, updateThread, deleteThread } from '$lib/supabase';
 
 export const GET = async ({ params }) => {
 	const res = await getThread(params.id);

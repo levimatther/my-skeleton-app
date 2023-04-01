@@ -1,4 +1,4 @@
-import { createPost } from '$lib/server/supabase';
+import { createPost } from '$lib/supabase';
 
 export const POST = async (newPost) => {
 	const res = await createPost(newPost);

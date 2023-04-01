@@ -1,4 +1,4 @@
-import { signOut } from '$lib/server/supabase';
+import { signOut } from '$lib/supabase';
 import type { RequestHandler } from '@sveltejs/kit';
 
 export const POST: RequestHandler = async () => {

@@ -1,4 +1,4 @@
-import { getPost, updatePost, deletePost } from '$lib/server/supabase';
+import { getPost, updatePost, deletePost } from '$lib/supabase';
 
 export const GET = async ({ params }) => {
 	const res = await getPost(params.id);

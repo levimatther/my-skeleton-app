@@ -298,7 +298,7 @@ export const getPlayers = async () => {
 
 export const getPlayer = async (playerId: number): Promise<{ data: Player } | void> => {
 	try {
-		const { data, error } = await supabase.from('players').select().eq('id', playerId).single();
+		const { data, error } = await supabase.from('players').select().eq('playerId', playerId).single();
 
 		if (data === null) {
 			const alias = generateAlias();

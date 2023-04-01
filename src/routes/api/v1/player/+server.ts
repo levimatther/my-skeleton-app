@@ -1,6 +1,5 @@
 import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import type { Player } from '$lib/types';
 
 export const POST = (({ url }) => {
 	const body = `The URL is: ${url}`;

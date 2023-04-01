@@ -1,4 +1,5 @@
 import { ApiVersion } from '$lib/enums';
+import type { Player } from '$lib/types';
 
 export async function load(event) {
     const res = await event.fetch(`/api/${ApiVersion}/player/${event.params.slug}`, {
@@ -9,6 +10,6 @@ export async function load(event) {
 		});
 
     return {
-        player: await res.json()
+        player: await res.json() as Player
     };
 }

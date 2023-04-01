@@ -1,5 +1,5 @@
 
-import { getPlayer } from '$lib/server/supabase';
+import { getPlayer } from '$lib/supabase';
 
 
 export const GET = async ({ params }) => {
@@ -18,7 +18,6 @@ export const GET = async ({ params }) => {
 		});
 	}
 };
-
 
 GET.satisfies = 'RequestHandler';
 

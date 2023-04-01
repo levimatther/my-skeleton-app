@@ -1,4 +1,4 @@
-import { getForum, updateForum, deleteForum } from '$lib/server/supabase';
+import { getForum, updateForum, deleteForum } from '$lib/supabase';
 
 export const GET = async ({ params }) => {
 
