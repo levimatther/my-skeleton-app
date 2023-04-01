@@ -9,7 +9,6 @@ export async function load(event) {
 		});
 
     return {
-        slug: event.params.slug,
         player: await res.json()
     };
 }

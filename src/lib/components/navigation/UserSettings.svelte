@@ -45,7 +45,9 @@
 <div class="card shadow-xl py-2" data-popup="combobox">
 	<!-- Listbox -->
 	<ListBox rounded="rounded-none">
-		<ListBoxItem bind:group={comboboxValue} name="medium" value="books">Profile</ListBoxItem>
+		<ListBoxItem bind:group={comboboxValue} name="medium" value="books">
+			<a href="/player/{session?.user?.id}">Profile</a>
+		</ListBoxItem>
 		<ListBoxItem bind:group={comboboxValue} name="medium" value="movies">
 			<LightSwitch />
 		</ListBoxItem>
@@ -55,7 +57,7 @@
 					Logout
 				</a>
 			{:else}
-				Login
+				<a href="/login">Login</a>
 			{/if}
 		</ListBoxItem>
 	</ListBox>

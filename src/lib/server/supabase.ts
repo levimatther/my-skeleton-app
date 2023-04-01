@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 // import type { Character, Player, Post, Thread } from '$lib/types';
-import { handleError } from '$lib/utils';
+import { handleError, generateAlias } from '$lib/utils';
+import type { Player } from '$lib/types';
 
 const supabaseUrl = import.meta.env.VITE_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY;
@@ -285,7 +286,7 @@ export const deleteThread = async (thread) => {
 
 // User Actions
 
-export const getUsers = async () => {
+export const getPlayers = async () => {
 	try {
 		const { data, error } = await supabase.from('users').select('*');
 		if (error) throw error;
@@ -295,59 +296,69 @@ export const getUsers = async () => {
 	}
 };
 
-export const getUser = async (/** @type {string} */ user_id) => {
+export const getPlayer = async (playerId: number): Promise<{ data: Player } | void> => {
 	try {
-		const { data, error } = await supabase
-			.from('users')
-			.select()
-			.eq('user_id', user_id)
-			.maybeSingle();
+		const { data, error } = await supabase.from('players').select().eq('id', playerId).single();
 
 		if (data === null) {
-			let alias = generateAlias();
-			createUser({ user_id, alias });
+			const alias = generateAlias();
+			await createPlayer({ playerId, alias }); // Await the createPlayer call
 		}
 
 		if (error) throw error;
-		return { data };
+		return { data: data[0] };
 	} catch (error) {
 		handleError(error);
 	}
 };
 
-export const createUser = async ({ user_id, alias }) => {
-	try {
-		const { data, error } = await supabase
-			.from('users')
-			.insert({ user_id, alias })
-			.select('*')
-			.single();
 
-		if (error) throw error;
-		return { data };
-	} catch (error) {
-		handleError(error);
-	}
+
+export const createPlayer = async ({
+  playerId,
+  alias,
+}: {
+  playerId: number;
+  alias: string;
+}): Promise<{ data: Player }> => {
+  try {
+    const { data, error } = await supabase
+      .from('players')
+      .insert({ playerId, alias })
+      .select('*')
+      .single();
+
+    if (error) {
+      throw error;
+    }
+
+    return { data: data[0]};
+  } catch (error) {
+    handleError(error);
+    throw error; 
+  }
 };
 
-export const updateUser = async (user) => {
+
+
+export const updatePlayer = async (player) => {
 	try {
 		const { data, error } = await supabase
-			.from('users')
+			.from('players')
 			.update([user])
-			.eq('user_id', user.user_id)
+			.eq('playerId', player?.playerId)
 			.select()
 			.single();
 		if (error) throw error;
-		return { data };
 	} catch (error) {
 		handleError(error);
 	}
+	return { data };
 };
 
-export const deleteUser = async (user) => {
+export const deletePlayer = async (player) => {
 	try {
-		const { data, error } = await supabase.from('users').delete().eq('user_id', user.user_id);
+		const { data, error } = await supabase.from('players').delete().eq('playerId', player?.playerId);
 		if (error) throw error;
 		return { data };
 	} catch (error) {

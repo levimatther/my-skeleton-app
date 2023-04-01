@@ -1,10 +1,24 @@
-import { error } from '@sveltejs/kit';
-import type { Player } from '$lib/types';
+
+import { getPlayer } from '$lib/server/supabase';
+
 
 export const GET = async ({ params }) => {
-	const body = `The Player ID is: ${params.id}`;
-	return new Response(JSON.stringify({ body }));
+	try {
+		const { data, error } = await getPlayer(params.id);
+		if (error) {
+			throw error;
+		}
+		if (!data) {
+			throw new Error('Not found');
+		}
+		return new Response(JSON.stringify({ data }));
+	} catch (err) {
+		return new Response(JSON.stringify({ error: err.message }), {
+			status: 500
+		});
+	}
 };
+
 
 GET.satisfies = 'RequestHandler';
 

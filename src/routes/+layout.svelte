@@ -23,13 +23,13 @@
 	// App-specific components
 	import Navigation from '$lib/components/navigation/Navigation.svelte';
 	import threadCRUD from '$lib/components/thread/ThreadCRUD.svelte';
-	import UserSettings from '$lib/components/user/UserSettings.svelte';
+	import UserSettings from '$lib/components/navigation/UserSettings.svelte';
 
 	
 
 	export let data;
 
-	console.log('layout data: ', data);
+	// console.log('layout data: ', data);
 
 	$: ({ supabase } = data);
 
