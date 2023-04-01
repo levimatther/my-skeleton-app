@@ -28,18 +28,13 @@ export const signIn = async (email: string) => {
 	}
 };
 
+export const signOut = async () => {
+	let { error } = await supabase.auth.signOut();
 
-export const getAuth = async () => {
-	try {
-		return await supabase.auth.getUser();
-	} catch (error) {
-		handleError(error);
-	}
-};
+	if (error) throw error;
 
-export const updateAuth = (callback) => {
-	supabase.auth.onAuthStateChange(callback);
-};
+	return { data: null };
+}
 
 // Character Actions
 

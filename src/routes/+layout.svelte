@@ -1,60 +1,67 @@
-<script lang='ts'>
-	// The ordering of these imports is critical to your app working properly
+<script lang="ts">
+	// Do not re-order this CSS. theme > all > app
 	import '@skeletonlabs/skeleton/themes/theme-skeleton.css';
-	// If you have source.organizeImports set to true in VSCode, then it will auto change this ordering
 	import '@skeletonlabs/skeleton/styles/all.css';
-	// Most of your app wide CSS should be put in this file
 	import '../app.postcss';
-	import { page } from '$app/stores';
-	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
-	import Navigation from '$lib/components/navigation/Navigation.svelte';
-	import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
-	import { LightSwitch } from '@skeletonlabs/skeleton';
-	
-	// Modal
-	import { Modal, modalStore } from '@skeletonlabs/skeleton';
-	import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
-	import threadCRUD from '$lib/components/thread/ThreadCRUD.svelte';
-
+	// Svelte Global Imports
+	import { invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
-	import { invalidate } from '$app/navigation'
+	import { page } from '$app/stores';
+	// Skeleton Global Imports
+	import {
+		Drawer,
+		drawerStore,
+		AppShell,
+		AppBar,
+		Modal,
+		storePopup
+	} from '@skeletonlabs/skeleton';
+	import type { ModalComponent } from '@skeletonlabs/skeleton';
+	// Floating UI GLobal Imports
+	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
+
+	// App-specific components
+	import Navigation from '$lib/components/navigation/Navigation.svelte';
+	import threadCRUD from '$lib/components/thread/ThreadCRUD.svelte';
+	import UserSettings from '$lib/components/user/UserSettings.svelte';
+
+	
 
 	export let data;
 
-	console.log ("layout data: ", data)
+	console.log('layout data: ', data);
 
-	$: ({ supabase } = data)
+	$: ({ supabase } = data);
 
 	onMount(() => {
 		const { data } = supabase.auth.onAuthStateChange(() => {
-			invalidate('supabase:auth')
-		})
+			invalidate('supabase:auth');
+		});
 
-		return () => data.subscription.unsubscribe()
-	})
+		return () => data.subscription.unsubscribe();
+	});
 
 	const modalComponentRegistry: Record<string, ModalComponent> = {
-
-	// Custom Modal 1
-	threadCRUD: {
-		// Pass a reference to your custom component
-		ref: threadCRUD,
-		// Add the component properties as key/value pairs
-		props: {},
-		// Provide a template literal for the default component slot
-		slot: ``
-	}
-};
+		// Custom Modal 1
+		threadCRUD: {
+			// Pass a reference to your custom component
+			ref: threadCRUD,
+			// Add the component properties as key/value pairs
+			props: {},
+			// Provide a template literal for the default component slot
+			slot: ``
+		}
+	};
 
 	function drawerOpen(): void {
-	drawerStore.open({})
+		drawerStore.open({});
+	}
 
+	// Popup Settings
 
+	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
-}
-
-$: classesSidebar = $page.url.pathname === '/' ? 'w-0 lg:w-64' : 'w-0 lg:w-64';
-
+	$: classesSidebar = $page.url.pathname === '/' ? 'w-0 lg:w-64' : 'w-0 lg:w-64';
 </script>
 
 <Drawer>
@@ -85,27 +92,15 @@ $: classesSidebar = $page.url.pathname === '/' ? 'w-0 lg:w-64' : 'w-0 lg:w-64';
 				</div>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
-				<a
-					class="btn btn-sm variant-ghost-surface"
-					href="https://discord.gg/8YCvmYbA"
-					target="_blank"
-					rel="noreferrer"
-				>
-					Discord
-				</a>
-				<LightSwitch />
+				<UserSettings session={data?.session} />
 			</svelte:fragment>
 		</AppBar>
-		
 	</svelte:fragment>
 
 	<svelte:fragment slot="sidebarLeft">
-		 <Navigation/>
+		<Navigation />
 	</svelte:fragment>
-
 
 	<!-- Page Route Content -->
 	<slot />
 </AppShell>
- 
-

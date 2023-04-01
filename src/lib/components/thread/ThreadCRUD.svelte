@@ -3,8 +3,7 @@
 	/** Exposes parent props to this component. */
 	export let parent: any;
 
-	console.log("modal store: ", $modalStore[0])
-
+	// console.log("modal store: ", $modalStore[0])
 
 	// Stores
 	import { modalStore } from '@skeletonlabs/skeleton';
@@ -14,9 +13,9 @@
 		player: $modalStore[0]?.value?.player ?? "Test Player",
 		characterId: $modalStore[0]?.value?.characters[0] ?? { id: 1, firstName: 'Test', lastName: 'Character' },
 		forumId: $modalStore[0]?.value?.forum?.id,
-		title: 'Your Title Here',
-		description: 'Once upon a time...',
-		post: 'Write a first, second, or third person post here as the character you selected to play.'
+		title: '',
+		description: '',
+		post: ''
 	};
 
 	// We've created a custom submit function to pass the response and close the modal.
@@ -31,9 +30,7 @@
 	const cForm = 'border border-surface-500 p-4 space-y-4 rounded-container-token';
 </script>
 
-<!-- @component This example creates a simple form modal. -->
-
-<div class="modal-example-form {cBase}">
+<div class="{cBase}">
 	<header class={cHeader}>{$modalStore[0]?.title ?? '(title missing)'}</header>
 	<article>{$modalStore[0]?.body ?? '(body missing)'}</article>
 	<!-- Enable for debugging: -->
@@ -53,15 +50,15 @@
 		</label>
 		<label class="label">
 			<span>Thread Title</span>
-			<input class="input" type="text" bind:value={formData.title} placeholder="Enter name..." />
+			<input class="input" type="text" bind:value={formData.title} placeholder="Your Title Here" />
 		</label>
 		<label class="label">
 			<span>Log Line</span>
-			<input class="input" type="text" bind:value={formData.description} placeholder="Enter phone..." />
+			<input class="input" type="text" bind:value={formData.description} placeholder="Once upon a time..." />
 		</label>
 		<label class="label">
 			<span>Post</span>
-			<textarea class="input textarea" rows="10" bind:value={formData.post} placeholder="Enter email address..." />
+			<textarea class="input textarea" rows="10" bind:value={formData.post} placeholder="Write a first, second, or third person post here as the character you selected to play." />
 		</label>
 	</form>
 	<!-- prettier-ignore -->
