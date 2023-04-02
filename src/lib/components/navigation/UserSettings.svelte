@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { signOut } from '$lib/supabase';
+	import { supabase } from '$lib/supabase';
 	import { goto } from '$app/navigation';
 	import { popup, Avatar, ListBox, ListBoxItem, LightSwitch } from '@skeletonlabs/skeleton';
 	import type { PopupSettings } from '@skeletonlabs/skeleton';
@@ -16,16 +16,14 @@
 		closeQuery: '.listbox-item'
 	};
 
-
-	async function handleLogout() {
-		if (session) {
-			try {
-				const { error } = await signOut();
-				goto('/');
-				if (error) throw error;
-			} catch (error) {
-				console.log(error);
-			}
+	function handleLogout() {
+		try {
+				
+			supabase.auth.signOut();
+			goto('/');
+		
+		} catch (error) {
+			console.log(error);
 		}
 	}
 
@@ -45,7 +43,7 @@
 			<LightSwitch />
 		</ListBoxItem>
 		<ListBoxItem bind:group={comboboxValue} name="medium" value="television">
-			{#if session}
+			{#if session?.user?.id}
 				<a href="/" on:click|preventDefault={handleLogout}>
 					Logout
 				</a>

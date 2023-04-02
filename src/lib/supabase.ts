@@ -17,7 +17,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export const signIn = async (email: string) => {
 	try {
-		console.log('email: ', email)
+		
 		let { data, error } = await supabase.auth.signInWithOtp(
 			{
 				email: email
@@ -29,13 +29,7 @@ export const signIn = async (email: string) => {
 	}
 };
 
-export const signOut = async () => {
-	let { error } = await supabase.auth.signOut();
-
-	if (error) throw error;
-
-	return { data: null };
-}
+ 
 
 // Character Actions
 
@@ -296,15 +290,15 @@ export const getPlayers = async () => {
 	}
 };
 
-export const getPlayer = async (playerId: number): Promise<{ data: Player } | void> => {
+export const getPlayer = async (player_id: string): Promise<{ data: Player } | void> => {
 	try {
-		const { data, error } = await supabase.from('players').select().eq('playerId', playerId).single();
+		const { data, error } = await supabase.from('players').select().eq('player_id', player_id).single();
 
 		if (data === null) {
 			const alias = generateAlias();
-			await createPlayer({ playerId, alias }); // Await the createPlayer call
+			await createPlayer({ player_id, alias }); // Await the createPlayer call
 		}
-
+		
 		if (error) throw error;
 		return { data: data[0] };
 	} catch (error) {
@@ -315,16 +309,16 @@ export const getPlayer = async (playerId: number): Promise<{ data: Player } | vo
 
 
 export const createPlayer = async ({
-  playerId,
+  player_id,
   alias,
 }: {
-  playerId: number;
+  player_id: string;
   alias: string;
 }): Promise<{ data: Player }> => {
   try {
     const { data, error } = await supabase
       .from('players')
-      .insert({ playerId, alias })
+      .insert({ player_id, alias })
       .select('*')
       .single();
 

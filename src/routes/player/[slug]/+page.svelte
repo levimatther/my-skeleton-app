@@ -1,10 +1,8 @@
 <script lang="ts">
-    export let data;
-    // console.log('page data: ', data);
 
-    let player = data?.player;
+  export let data
+  console.log("player page ", data)
+
+
 </script>
 
-{#if data}
-    <h1>{player?.alias}</h1>
-{/if}

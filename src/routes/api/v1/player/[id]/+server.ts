@@ -1,25 +1,33 @@
 
-import { getPlayer } from '$lib/supabase';
+import {generateAlias} from '$lib/utils';
+import type { RequestHandler } from './$types';
+import { json, error } from '@sveltejs/kit';
 
+export const GET: RequestHandler = async ({
+  locals: { supabase, getSession },
+  params
+}) => {
+  const player_id = params.id;
+  console.log('player_id', player_id)
+  const session = await getSession();
 
-export const GET = async ({ params }) => {
-	try {
-		const { data, error } = await getPlayer(params.id);
-		if (error) {
-			throw error;
-		}
-		if (!data) {
-			throw new Error('Not found');
-		}
-		return new Response(JSON.stringify({ data }));
-	} catch (err) {
-		return new Response(JSON.stringify({ error: err.message }), {
-			status: 500
-		});
-	}
+  if (!session) {
+    // the user is not signed in
+    throw error(401, { message: 'Unauthorized' });
+  }
+  
+  const { data, error } = await supabase
+		.from('players')
+		.select('*')
+		.eq('player_id', player_id)
+		.single();
+
+  console.log("player data", data)
+
+  return new Response(JSON.stringify({ ...data }));
 };
 
-GET.satisfies = 'RequestHandler';
+
 
 export const PUT = async ({ params }) => {
 	const body = `The Player ID is: ${params.id}`;

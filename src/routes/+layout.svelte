@@ -29,8 +29,6 @@
 
 	export let data;
 
-	// console.log('layout data: ', data);
-
 	$: ({ supabase } = data);
 
 	onMount(() => {
