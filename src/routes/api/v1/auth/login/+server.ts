@@ -1,17 +1,25 @@
-import { json } from '@sveltejs/kit';
-import { signIn } from '$lib/supabase';
 import type { RequestHandler } from '@sveltejs/kit';
 
-export const POST: RequestHandler = async ({ request }) => {
+
+export const POST: RequestHandler = async ({ locals: { supabase, getSession }, request }) => {
 	try {
 		const { email } = await request.json()
-		await signIn(email);
-		return json({ message: 'Check your email for the login link' })
-	} catch (error) {
+		console.log('email', email)
+		const session = await getSession();
+		console.log('session', session)
+
+		if (!session) {
+			throw error(401, { message: 'Unauthorized' });
+		}
+
+		let { data, error } = await supabase.auth.signInWithOtp(email);
+
+		return new Response(JSON.stringify(data));
+	}
+	catch (error) {
 		return new Response(JSON.stringify({ error: error }), {
 			status: 500,
 			headers: { 'content-type': 'application/json' }
 		});
 	}
 };
-

@@ -30,7 +30,7 @@
 	export let data;
 	console.log('layout page ', data);
 
-	$: ({ supabase } = data);
+	$: ({ supabase, session } = data);
 
 	onMount(() => {
 		const { data } = supabase.auth.onAuthStateChange(() => {
