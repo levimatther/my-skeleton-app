@@ -2,11 +2,12 @@
 // for information about these interfaces
 // and what to do when importing types
 
+import { SupabaseClient, Session } from '@supabase/supabase-js';
 import type { User } from '$lib/types';
 
 declare namespace App {
 	 interface Locals {
-			supabase: SupabaseClient;
+			supabase: SupabaseClient<Database>;
 			getSession(): Promise<Session | null>;
 		}
 	 interface PageData {
@@ -15,3 +16,6 @@ declare namespace App {
 	// interface Error {}
 	// interface Platform {}
 }
+
+
+export {};

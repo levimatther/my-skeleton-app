@@ -1,10 +1,11 @@
 <script lang="ts">
-	import { supabase } from '$lib/supabase';
 	import { goto } from '$app/navigation';
 	import { popup, Avatar, ListBox, ListBoxItem, LightSwitch } from '@skeletonlabs/skeleton';
 	import type { PopupSettings } from '@skeletonlabs/skeleton';
 
 	export let session: any;
+
+	$: session 
 
 	let comboboxValue: string;
 
@@ -19,12 +20,12 @@
 	function handleLogout() {
 		try {
 				
-			supabase.auth.signOut();
-			goto('/');
+			
 		
 		} catch (error) {
 			console.log(error);
 		}
+	
 	}
 
 </script>

@@ -1,11 +1,18 @@
-import { signOut } from '$lib/supabase';
 import type { RequestHandler } from '@sveltejs/kit';
+import { goto } from '$app/navigation';
 
-export const POST: RequestHandler = async () => {
+export const POST: RequestHandler = async ({ locals: { supabase, getSession } }) => {
 	try {
-		await signOut();
+		const session = await getSession();
 
-		return new Response(JSON.stringify({ message: 'You have been logged out' }));
+		if (!session) {
+			throw error(401, { message: 'Unauthorized' });
+		}
+
+		await supabase.auth.signOut();
+
+		goto('/');
+
 	} catch (error) {
 		return new Response(JSON.stringify({ error: error }), {
 			status: 500,

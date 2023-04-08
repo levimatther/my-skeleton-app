@@ -28,6 +28,7 @@
 	
 
 	export let data;
+	console.log('layout page ', data);
 
 	$: ({ supabase } = data);
 
