@@ -4,7 +4,7 @@
 </script>
 
 
-<div class="container flex flex-wrap mx-auto px-4 sm:px-6 lg:px-8">
+<div class="container flex flex-wrap mx-auto">
     {#each testList as item}
         <CharacterTile />
     {/each}

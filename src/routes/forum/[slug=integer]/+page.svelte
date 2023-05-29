@@ -3,7 +3,7 @@
   import { modalStore } from "@skeletonlabs/skeleton";
   import type { ModalSettings } from "@skeletonlabs/skeleton";
   export let data;
-  let forum = data?.forum;
+  let forum = data?.props?.forum;
 
   function modalCRUD(): void {
       const prompt: ModalSettings = {

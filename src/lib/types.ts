@@ -35,15 +35,15 @@ export interface Forum {
 export interface Forums extends Array<Forum> {}
 
 export interface Player {
-	player_id: string;
+	id: string;
 	alias: string;
 	age?: number;
 	avatar?: string;
 	bio?: string;
 	characters?: Character[];
-	created_at: string;
-	dislikes: string;
-	likes: string;
+	createdAt: string;
+	dislikes?: string;
+	likes?: string;
 	threads?: Thread[];
 	time_zone?: string;
 	updated_at?: string;

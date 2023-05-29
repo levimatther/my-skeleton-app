@@ -13,6 +13,6 @@ export async function load(event) {
     const futureProp = "test"
         
     return {
-        props: { forums, futureProp }
+        props: { forums, futureProp },
     };
 }

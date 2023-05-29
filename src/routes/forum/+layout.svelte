@@ -1,3 +1,3 @@
-<main class="m-2 ">
+<main class="">
     <slot />
 </main>

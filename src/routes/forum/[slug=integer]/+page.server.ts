@@ -8,7 +8,9 @@ export async function load(event) {
 			}
 		});
     return {
-        slug: event.params.slug,
-        forum: await res.json()
+        props: {
+            slug: event.params.slug,
+            forum: await res.json()
+        }
     };
 }

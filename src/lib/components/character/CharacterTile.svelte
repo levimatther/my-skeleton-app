@@ -7,7 +7,9 @@
 		age: 1234,
 		soulType: "Undead", 
 		species: "Human",
-		avatar: "https://cdn.midjourney.com/eaa42a60-2bae-4661-8b16-a88ea9ef45c1/grid_0.png"
+		avatar: "https://cdn.midjourney.com/eaa42a60-2bae-4661-8b16-a88ea9ef45c1/grid_0.png",
+		createdAt: "",
+		updatedAt: "",
 	}
 </script>
 
