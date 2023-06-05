@@ -27,7 +27,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		 */
 		filterSerializedResponseHeaders(name) {
 			return name === 'content-range';
-		}
+		},
 	});
 };
  

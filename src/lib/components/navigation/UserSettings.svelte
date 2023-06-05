@@ -10,7 +10,7 @@
 	let comboboxValue: string;
 
 	let popupCombobox: PopupSettings = {
-		event: 'hover-click',
+		event: 'click',
 		target: 'combobox',
 		placement: 'left',
 		// Close the popup when the item is clicked
